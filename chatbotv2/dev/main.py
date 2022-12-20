@@ -1,6 +1,5 @@
 from db_bot import *
 import doing
-from statics import karma
 import random
 print("""
 Список что может бот:
@@ -10,13 +9,10 @@ print("""
 Поболтаем?
 Загадку
 """)
-karma_stat = karma
-print(karma_stat,karma)
 user_text = input().lower()
 doing.base_ask(user_text)
 while True:
     user_text = input().lower()
-    
     if "stop" in user_text:
         break
     if "поиграем в рулетку" in user_text:
@@ -27,7 +23,5 @@ while True:
         print(1)
     elif user_text in ask_talkings:
         doing.talking(user_text)
-    elif "dev" in user_text:
-        print(karma_stat,karma)
     else:
         print(random.choice(huh))

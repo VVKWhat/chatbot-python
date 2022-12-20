@@ -2,14 +2,13 @@ from db_bot import *
 from colors import *
 import time
 import random
-import statics
-
+hello = 1
 def base_ask(ask):
     if ask in start:
         print(random.choice(privet))
     while True:
         ask = input().lower()
-        hello = 1
+        
         if "stop" in ask:
             while True:
                 global user_text
@@ -23,14 +22,11 @@ def base_ask(ask):
             start_roulet(ask)
             break
         elif ask in start:
+            global hello
             hello+=1
-
+            
             if hello < 5:
                 print(random.choice(privet))
-            else:
-                print(random.choice(much_hello))
-            if hello < 5:
-                print("Ну привет. У тебя очень плохая карма!")
             else:
                 print(random.choice(much_hello))
         elif "посоветуй игру" in ask:
@@ -39,6 +35,8 @@ def base_ask(ask):
         elif ask in ask_talkings:
             talking(ask)
             break
+        else:
+            print(random.choice(huh))
 def talking(ask):
     while True:
         print("Давайте! Как у вас дела?") # спрашиваем у пользователя как дела
@@ -113,20 +111,13 @@ def talking(ask):
             elif "умер" in ask or "умерла" in ask or "умрёт" in ask: # Если пользователь введёт что-то такое, то мы пишем слова поддержки
                 print("Сочувствую, надеюсь всё наладиться!") 
             
-            elif ask !=  dela and vopros: # Если ответ пользователя не равно перменным dela и vopros то пишем такое
+            elif ask !=  dela or vopros: # Если ответ пользователя не равно перменным dela и vopros то пишем такое
+                randomaise = ["0","1","0","0"]
+                random.shuffle(randomaise)
                 if resultok_no == "okay": # проверяем, если в переменной resultok_no равен тексту okay То пишем такое
                     print(random.choice(okay))
-                else: # иначе
-                    print(random.choice(nope))
-           
-            elif ask != vopros: # если нет в vopros то пишем ничего
-                print("Ничто")
-            
-            elif ask != dela: # а если при dela то пишем понятно, желаю удачи
-                print("Понятно, желаю удачи") 
-
-            else: # Если ничего из этого не случилось то пишем такое (почти никогда не используется после обновления кода)
-                print("Извини, не понял тебя, давай я у тебя спрошу:")
+                elif 1 == random.choice(randomaise):
+                    print("Извини, не понял тебя, давай я у тебя спрошу:")
                 a = random.choice(vopros)
                 print(a)
                 ask = input().lower()
@@ -144,6 +135,9 @@ def talking(ask):
                 
                 elif "stop" in ask:
                     break  # Конец что я добавил
+                else: # иначе
+                    print(random.choice(nope))
+                
 
 def start_roulet(ask):
     global user_text
